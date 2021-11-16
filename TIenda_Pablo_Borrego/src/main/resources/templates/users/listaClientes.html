@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Lista de clientes</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+   	<link rel='stylesheet' type='text/css' media='screen' th:href='@{/cssFiles/formCss.css}'>
+</head>
+<body>
+    
+<header>
+  <nav th:replace = "/fragment/navbar::navegador"></nav>
+</header>
+      <div class="col-lg-8 mx-auto p-3 py-md-5">
+		<h3>Clientes:</h3>
+      	
+      	<table id = "tabla">
+      		<tr>
+				<th>ID:</th>
+				<th>Nombre:</th>
+				<th>Primer apellido:</th>
+				<th>Segundo apellido:</th>
+				<th>Localidad:</th>
+				<th>Telefono:</th>
+			</tr>
+			<tr th:each = "clientes:${listaClientes}">
+				<td th:text = "${clientes.id}"></td>
+				<td th:text = "${clientes.user}"></td>
+				<td th:text = "${clientes.apellido1}"></td>
+				<td th:text = "${clientes.apellido2}"></td>
+				<td th:text = "${clientes.localidad}"></td>
+				<td th:text = "${clientes.telefono}"></td>
+           		<td><a th:href="@{/usuarios/editarCliente/}+${clientes.id}">Editar</a></td>
+				<td><a th:if= "${session.id_rolUsuario == 3}"th:href="@{/usuarios/eliminar/}+${clientes.id}">Eliminar</a></td>
+			</tr>
+		</table>
+      </div>
+      <footer th:replace = "/fragment/footer ::piePagina"></footer>
+      
+</body>    
+</html>

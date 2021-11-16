@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Alta de productos</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/checkout/">
+
+    
+<link th:href="@{/cssFiles/formCss.css}" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="form-validation.css" rel="stylesheet">
+  </head>
+  <body>
+    
+<header>
+  <nav th:replace = "/fragment/navbar::navegador"></nav>
+</header>
+
+  <main>
+    <div class="py-5 text-center">
+     
+      <h2>Nuevo producto</h2>
+    </div>
+
+    <div class="row g-5" style = "position: relative; left: 120px;">
+      
+      <div class="col-md-7 col-lg-8">
+        <form class="needs-validation" enctype="multipart/form-data" novalidate th:action="@{/productos/crear/submit}" th:object="${producto}" method="post">
+         
+              <input type="hidden" name= "id" class="form-control" id="firstName" th:field="*{id}" required>
+           	  
+            <div class="col-sm-6">
+              <label for="Nombre" class="form-label">Nombre producto</label>
+              <input type="text" name= "nombre" class="form-control" id="firstName" th:field="*{nombre}" required>
+              <div class="invalid-feedback">
+                Se requiere de un nombre válido
+              </div>
+            </div>
+
+            <div class="col-12">
+            
+              <label for="Descripcion" class="form-label">Descripcion</label>
+              <div class="input-group has-validation">
+                <input type="text"name= "descripcion" class="form-control" id="firstName" th:field="*{descripcion}" style="height: 100px;" required >
+              <div class="invalid-feedback">
+                  Se requiere de una descripción válida
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="Precio" class="form-label">Precio</label>
+              <input type="text" name= "precio" class="form-control" id="firstName" th:field="*{precio}" placeholder="99.0" value="" required>
+              <div class="invalid-feedback">
+                Se requiere de un nombre válido
+              </div>
+            </div>
+            
+			<div class="col-sm-6">
+              <label for="Stock" class="form-label">Stock</label>
+              <input type="text" name= "stock" class="form-control" id="firstName" th:field="*{stock}" placeholder="100" value="" required>
+              <div class="invalid-feedback">
+                Se requiere de un nombre válido
+              </div>
+            </div>
+            
+            <div class="col-sm-6">
+              <label for="Imagen" class="form-label">Imagen</label>
+              <input id="file" name="file" type="file" class="form-control"value="" required>
+              <div class="invalid-feedback">
+                Se requiere de un nombre válido
+              </div>
+            </div>
+            
+
+          <button class="btn btn-sm btn-outline-secondary" type="submit" style = "width: 100px; margin-bottom: 50px; margin-top: 50px">Crear</button>
+          
+        </form>
+      </div>
+    </div>
+  </main>
+
+   <footer th:replace = "/fragment/footer ::piePagina"></footer>
+
+
+
+
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+      <script src="form-validation.js"></script>
+  </body>
+</html>

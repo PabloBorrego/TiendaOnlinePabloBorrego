@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Carrito</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+   	<link rel='stylesheet' type='text/css' media='screen' th:href='@{/cssFiles/formCss.css}'>
+	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<header>
+  <nav th:replace = "/fragment/navbar::navegador"></nav>
+</header>
+	<div class="album py-5 bg-light">
+	<div class="col-lg-8 mx-auto p-3 py-md-5">	
+      <form th:action="@{/pedido/finalizarPedido}" th:object = "${pedido}" method = "post">
+	      	<table id="tabla" >
+				<tr>
+					<th>Nombre:</th>
+					<th>Unidades:</th>
+					<th>Precio:</th>
+				</tr>
+				<tr th:each = "detalle: ${listaDetalles}">
+					<td th:text = "${detalle.nombreprod}"></td>
+					<td th:text = "${detalle.unidades}"></td>
+					<td th:text = "${detalle.total}"></td>
+				</tr>
+			</table>
+			
+			<div class="btn-group-horizontal" style = "margin-top: 15px;">
+				<p>Metodo de pago:</p>
+				<label>Efectivo</label>
+				<input type="radio" name = "metodoPago" class="btn btn-primary" value = "Efectivo"  th:field="*{metodoPago}" >
+				<label>Paypal</label>
+				<input type="radio" name = "metodoPago" class="btn btn-primary" value = "PayPal"   th:field="*{metodoPago}">
+			</div>
+			
+			<button type = "submit" class="btn btn-sm btn-outline-secondary" style = "margin-top: 15px;" id = "boton" placeholder="Confrimar compra" >COMPRAR</button>
+		</form>
+	</div>
+	</div>	
+		<footer  th:replace = "/fragment/footer ::piePagina"></footer>
+		
+</body>    

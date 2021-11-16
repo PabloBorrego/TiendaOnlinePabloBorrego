@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Inicio de sesion</title>
+
+    <!-- Bootstrap core CSS -->
+	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="/cssFiles/signin.css" rel="stylesheet">
+  </head>
+  <body class="text-center">
+    
+<main class="form-signin">
+    <img class="mb-4" src="/img/LoopsLogoEdited.svg" alt="" width="320" height="250" align="middle">
+  <form th:action="@{/login/evaluarSesion}" th:object="${usuario}" method= "post">
+    <h3 class="h3 mb-3 fw-normal">Inicia sesion</h3>
+
+    <div class="form-floating">
+      <input type="text" class="form-control" id="floatingInput" name = "user"  placeholder="name@example.com">
+      <label for="floatingInput">Nombre de usuario</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" name = "password" placeholder="Password">
+      <label for="floatingPassword">Contraseña</label>
+    </div>
+
+    <div class="checkbox mb-3">
+       <a th:href = "@{/usuarios/crearCliente}"><input class ="w-100 btn btn-lg btn-primary btn-inicio" type = "button" value = "Registrarme"></input></a>
+      <br>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary btn-inicio" type="submit">Comprobar</button>
+  </form>
+</main>
+
+  </body>
+</html>

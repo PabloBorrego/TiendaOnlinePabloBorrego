@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Perfil</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/starter-template/">
+
+    
+
+    <!-- Bootstrap core CSS -->
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/starter-template.css}" rel="stylesheet">
+    <link th:href="@{/cssFiles/formCss.css}" rel="stylesheet">
+  </head>
+<body>
+      
+<header>
+  <nav th:replace = "/fragment/navbar::navegador"></nav>
+</header>
+  <div class="col-lg-8 mx-auto p-3 py-md-5">	
+  <main th:object = "${usuario}">
+    <h1 th:text = "'Nombre: '+ ${usuario.user}"></h1>
+    <h3 th:text = "'Apellidos: '+ ${usuario.apellido1} +' '+ ${usuario.apellido2}"></h3>
+    <h3 th:text = "'Direccion: '+ ${usuario.direccion}"></h3>
+    <h3 th:text = "'Localidad: '+ ${usuario.localidad}"></h3>
+    <h3 th:text = "'Telefono: '+ ${usuario.telefono}"></h3>
+    <h3 th:if="${session.id_rolUsuario == 2}">Empleado</h3>
+    <h3 th:if="${session.id_rolUsuario == 3}">Administrador</h3>
+  </main>
+  </div>
+  <footer th:replace = "/fragment/footer ::piePagina"></footer>
+
+</body>    
+</html>

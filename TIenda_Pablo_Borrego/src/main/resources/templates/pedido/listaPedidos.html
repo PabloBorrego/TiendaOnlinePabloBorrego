@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Lista de pedidos</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+   	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+   	<link rel='stylesheet' type='text/css' media='screen' th:href='@{/cssFiles/formCss.css}'>
+</head>
+<body>
+    
+<header>
+  <nav th:replace = "/fragment/navbar::navegador"></nav>
+</header>
+
+	<div class="col-lg-8 mx-auto p-3 py-md-5">
+	 <h3 >Pedidos:</h3>
+	      	<table id="tabla" >
+				<tr>
+					<th>ID:</th>
+					<th th:if = "${session.id_rolUsuario == 2 || session.id_rolUsuario == 3}">Id usuario:</th>
+					<th>Estado:</th>
+					<th>Fecha:</th>
+					<th>Total:</th>
+					<th>Metodo de pago:</th>
+				</tr>
+				<tr th:each = "pedido: ${listaPedidos}">
+					<td th:text = "${pedido.id}"></td>
+					<td th:if = "${session.id_rolUsuario == 2 || session.id_rolUsuario == 3}" th:text = "${pedido.id_usuario}"></td>
+					<td th:text = "${pedido.estado}"></td>
+					<td th:text = "${pedido.fecha}"></td>
+					<td th:text = "${pedido.total}"></td>
+					<td th:text = "${pedido.metodoPago}"></td>
+					<td><a th:href="@{/pedido/detallePedido/}+${pedido.id}">Detalle pedido</a></td>
+					<td th:if = "${session.id_rolUsuario == 1}"><a th:href="@{/pedido/cancelarPedido/}+${pedido.id}">Solicitar cancelacion</a></td>
+					<td th:if = "${(session.id_rolUsuario == 2 || session.id_rolUsuario == 3) && pedido.estado == 'pendiente'}"><a th:href="@{/pedido/enviarPedido/}+${pedido.id}">Enviar pedido</a></td>
+					<td th:if = "${session.id_rolUsuario == 3}"><a th:href="@{/pedido/cancelarPedido/}+${pedido.id}">Cancelar pedido</a></td>
+				</tr>
+			</table>
+	</div>
+	<footer th:replace = "/fragment/footer ::piePagina"></footer>
+	
+</body>    
+</html>
